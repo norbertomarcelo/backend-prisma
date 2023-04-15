@@ -112,10 +112,10 @@ class Address(models.Model):
         verbose_name='Bairro',
         max_length=128
     )
-    
+
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name = "Endereço"
         verbose_name_plural = "Endereços"

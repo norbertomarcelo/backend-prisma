@@ -1,5 +1,5 @@
 from django.contrib import admin
-from appointment.models.persons import Prescriber, Patient, Address
+from appointment.models import Prescriber, Patient, Address, Evaluation, Quiz
 
 
 class PrescriberAdmin(admin.ModelAdmin):
@@ -44,6 +44,46 @@ class AddressAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
+class EvaluationAdmin(admin.ModelAdmin):
+    fields = (
+        'patient', 'prescriber', 'blood_pressure', 'spo2', 'heart_rate',
+        'respiratory_rate', 'temperature', 'left_goniometry', 'right_goniometry',
+        'eva', 'glasgow', 'palpation', 'return_date'
+    )
+    list_display = (
+        'patient', 'prescriber', 'date'
+    )
+    search_fields = (
+        'patient', 'prescriber', 'date'
+    )
+    list_per_page = 10
+    autocomplete_fields = (
+        'patient', 'prescriber'
+    )
+
+
+class QuizAdmin(admin.ModelAdmin):
+    fields = (
+        'patient', 'prescriber', 'age', 'birth_date', 'height', 'goal',
+        'physical_activity', 'medication', 'smoker', 'alcoholic', 'hypertensive',
+        'diabetic', 'sedentary', 'pain', 'surgery', 'hpa', 'hpp',
+        'complementary_exams', 'biggest_complaint', 'family_background', 'habits',
+        'return_date'
+    )
+    list_display = (
+        'patient', 'prescriber', 'date'
+    )
+    search_fields = (
+        'patient', 'prescriber', 'date'
+    )
+    list_per_page = 10
+    autocomplete_fields = (
+        'patient', 'prescriber'
+    )
+
+
 admin.site.register(Prescriber, PrescriberAdmin)
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(Address, AddressAdmin)
+admin.site.register(Evaluation, EvaluationAdmin)
+admin.site.register(Quiz, QuizAdmin)
