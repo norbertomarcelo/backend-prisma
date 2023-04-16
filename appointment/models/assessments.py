@@ -24,11 +24,11 @@ class Assessment(models.Model):
         null=True
     )
 
-    def model_callable(self):
-        return self.patient, self.prescriber
-
     class Meta:
         abstract: True
+
+    def model_callable(self):
+        return self.patient, self.prescriber
 
 
 class Evaluation(Assessment):
@@ -75,8 +75,8 @@ class Evaluation(Assessment):
     )
 
     class Meta:
-        verbose_name = "Avaliação"
-        verbose_name_plural = "Avaliações"
+        verbose_name = 'Avaliação'
+        verbose_name_plural = 'Avaliações'
 
 
 class Quiz(Assessment):
@@ -84,12 +84,12 @@ class Quiz(Assessment):
         verbose_name='Idade',
         null=True
     )
-    birth_date = models.DateField(
-        verbose_name='Data de nascimento',
-        null=True
-    )
     height = models.FloatField(
         verbose_name='Altura',
+        null=True
+    )
+    weight = models.FloatField(
+        verbose_name='Peso',
         null=True
     )
     goal = models.CharField(
@@ -138,7 +138,7 @@ class Quiz(Assessment):
         null=True
     )
     hpp = models.TextField(
-        verbose_name='História patológica  progressiva(HPP)',
+        verbose_name='História patológica progressiva(HPP)',
         null=True
     )
     complementary_exams = models.TextField(
@@ -160,5 +160,5 @@ class Quiz(Assessment):
     )
 
     class Meta:
-        verbose_name = "Questionário"
-        verbose_name_plural = "Questionários"
+        verbose_name = 'Questionário'
+        verbose_name_plural = 'Questionários'

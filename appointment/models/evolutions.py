@@ -27,12 +27,15 @@ class Evolution(models.Model):
         auto_now_add=True
     )
 
+    class Meta:
+        verbose_name = 'Evolução'
+        verbose_name_plural = 'Evoluções'
+
+    def __str__(self):
+        return self.header
+
     def model_callable(self):
         return self.patient, self.prescriber
-
-    class Meta:
-        verbose_name = "Evolução"
-        verbose_name_plural = "Evoluções"
 
 
 class Conduct(models.Model):
@@ -55,9 +58,12 @@ class Conduct(models.Model):
         auto_now_add=True
     )
 
+    class Meta:
+        verbose_name = 'Conduta'
+        verbose_name_plural = 'Condutas'
+
+    def __str__(self):
+        return self.header
+
     def model_callable(self):
         return self.evolution
-
-    class Meta:
-        verbose_name = "Conduta"
-        verbose_name_plural = "Condutas"

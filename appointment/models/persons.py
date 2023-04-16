@@ -37,11 +37,11 @@ class Person(models.Model):
         null=True,
     )
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         abstract: True
+
+    def __str__(self):
+        return self.name
 
 
 class Prescriber (Person):
@@ -51,18 +51,19 @@ class Prescriber (Person):
     )
 
     class Meta:
-        verbose_name = "Fisioterapeuta"
-        verbose_name_plural = "Fisioterapeutas"
+        verbose_name = 'Fisioterapeuta'
+        verbose_name_plural = 'Fisioterapeutas'
 
 
 class Patient(Person):
     CIVIL_STATUS = (
-        ('S', 'Solteiro(a)'),
-        ('C', 'Casado(a)')
+        ('S', 'Single'),
+        ('M', 'Married')
     )
 
     birth_date = models.DateField(
         verbose_name='Data de nascimento',
+        null=True
     )
     occupations = models.TextField(
         verbose_name='Ocupação',
@@ -89,8 +90,8 @@ class Patient(Person):
         return self.address
 
     class Meta:
-        verbose_name = "Paciente"
-        verbose_name_plural = "Pacientes"
+        verbose_name = 'Paciente'
+        verbose_name_plural = 'Pacientes'
 
 
 class Address(models.Model):
@@ -117,5 +118,5 @@ class Address(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Endereço"
-        verbose_name_plural = "Endereços"
+        verbose_name = 'Endereço'
+        verbose_name_plural = 'Endereços'
