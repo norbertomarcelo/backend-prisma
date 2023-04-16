@@ -1,5 +1,5 @@
 from django.contrib import admin
-from appointment.models import Prescriber, Patient, Address, Evaluation, Quiz
+from appointment.models import Prescriber, Patient, Address, Evaluation, Quiz, Evolution, Conduct
 
 
 class PrescriberAdmin(admin.ModelAdmin):
@@ -82,8 +82,42 @@ class QuizAdmin(admin.ModelAdmin):
     )
 
 
+class EvolutionAdmin(admin.ModelAdmin):
+    fields = (
+        'patient', 'prescriber', 'header', 'description'
+    )
+    list_display = (
+        'patient', 'prescriber', 'header', 'date'
+    )
+    search_fields = (
+        'patient', 'prescriber', 'header', 'date'
+    )
+    list_per_page = 10
+    autocomplete_fields = (
+        'patient', 'prescriber'
+    )
+
+
+class ConductAdmin(admin.ModelAdmin):
+    fields = (
+        'patient', 'prescriber', 'header', 'description'
+    )
+    list_display = (
+        'patient', 'prescriber', 'header', 'date'
+    )
+    search_fields = (
+        'patient', 'prescriber', 'header', 'date'
+    )
+    list_per_page = 10
+    autocomplete_fields = (
+        'patient', 'prescriber'
+    )
+
+
 admin.site.register(Prescriber, PrescriberAdmin)
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(Evaluation, EvaluationAdmin)
 admin.site.register(Quiz, QuizAdmin)
+admin.site.register(Evolution, EvolutionAdmin)
+admin.site.register(Conduct, ConductAdmin)
