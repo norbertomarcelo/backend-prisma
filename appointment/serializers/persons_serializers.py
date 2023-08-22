@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from appointment.models.persons import Prescriber, Patient, Address
+from appointment.validators import *
 
 
 class PrescriberSerializer(serializers.ModelSerializer):

@@ -1,21 +1,25 @@
 from django.db import models
+from appointment.validators import name_validator, cpf_validadtor, phone_validator
 
 
 class Person(models.Model):
     name = models.CharField(
         verbose_name='Nome',
-        max_length=128
+        max_length=128,
+        validators=[name_validator]
     )
     cpf = models.CharField(
         verbose_name='CPF',
         max_length=11,
-        unique=True
+        unique=True,
+        validators=[cpf_validadtor]
     )
     phone_number = models.CharField(
         verbose_name='Telefone',
         max_length=14,
         null=True,
-        blank=True
+        blank=True,
+        validators=[phone_validator]
     )
     email = models.EmailField(
         verbose_name='E-mail',
@@ -42,6 +46,18 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
+    def validate(self, data):
+        if not name_validator(data['name']):
+            raise models.ValidationError(
+                {'name': 'Do not include numbers in this field.'})
+        if not cpf_validadtor(data['cpf']):
+            raise models.ValidationError(
+                {'cpf': 'Invalid CPF number.'})
+        if not phone_validator(data['phone_number']):
+            raise models.ValidationError(
+                {'celumar': 'Invalid phone number.'})
+        return
 
 
 class Prescriber (Person):
