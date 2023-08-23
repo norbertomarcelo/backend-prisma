@@ -4,7 +4,12 @@ from django.core.exceptions import ValidationError
 
 
 def name_validator(value):
-    if re.findall(r'[^A-Za-z]', value):
+    if re.findall(r'[(!@#$%¨&*+=?/\|)]', value):
+        raise ValidationError(
+            ('This name has invalid characters.'),
+            params={"value": value},
+        )
+    elif re.findall(r'[0-9]', value):
         raise ValidationError(
             ('This name has invalid characters.'),
             params={"value": value},
