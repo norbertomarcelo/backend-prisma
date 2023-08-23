@@ -9,7 +9,7 @@ class PrescriberAdmin(admin.ModelAdmin):
         'name', 'cpf', 'coffito', 'phone_number', 'email'
     )
     list_display = (
-        'id', 'name', 'cpf', 'coffito', 'phone_number', 'email', 'crated_at', 'updated_at'
+        'id', 'name', 'cpf', 'coffito', 'phone_number', 'email', 'created_at', 'updated_at'
     )
     search_fields = (
         'name', 'cpf', 'coffito', 'phone_number', 'email'
@@ -24,7 +24,7 @@ class PatientAdmin(admin.ModelAdmin):
         'civil_status', 'pathologies', 'address'
     )
     list_display = (
-        'id', 'name', 'cpf', 'phone_number', 'email', 'crated_at', 'updated_at'
+        'id', 'name', 'cpf', 'phone_number', 'email', 'created_at', 'updated_at'
     )
     search_fields = (
         'name', 'cpf', 'phone_number', 'email'

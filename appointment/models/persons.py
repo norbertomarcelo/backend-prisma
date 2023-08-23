@@ -1,5 +1,5 @@
 from django.db import models
-from appointment.validators import name_validator, cpf_validadtor, phone_validator
+from appointment.validators import name_validator, cpf_validator, phone_validator
 
 
 class Person(models.Model):
@@ -12,7 +12,7 @@ class Person(models.Model):
         verbose_name='CPF',
         max_length=11,
         unique=True,
-        validators=[cpf_validadtor]
+        validators=[cpf_validator]
     )
     phone_number = models.CharField(
         verbose_name='Telefone',
@@ -26,7 +26,7 @@ class Person(models.Model):
         null=True,
         blank=True
     )
-    crated_at = models.DateField(
+    created_at = models.DateField(
         verbose_name='Criado em',
         blank=True,
         auto_now_add=True
@@ -51,7 +51,7 @@ class Person(models.Model):
         if not name_validator(data['name']):
             raise models.ValidationError(
                 {'name': 'Do not include numbers in this field.'})
-        if not cpf_validadtor(data['cpf']):
+        if not cpf_validator(data['cpf']):
             raise models.ValidationError(
                 {'cpf': 'Invalid CPF number.'})
         if not phone_validator(data['phone_number']):

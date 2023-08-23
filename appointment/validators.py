@@ -10,7 +10,7 @@ def name_validator(value):
             params={"value": value},
         )
 
-def cpf_validadtor(value):
+def cpf_validator(value):
     cpf = CPF()
     if not cpf.validate(value):
         raise ValidationError(
