@@ -1,6 +1,6 @@
 from django.test import TestCase
-from appointment.validators import name_validator, cpf_validator, phone_validator
 from django.core.exceptions import ValidationError
+from appointment.validators import name_validator, cpf_validator, phone_validator
 
 
 class ValidatorsTestCase(TestCase):
